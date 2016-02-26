@@ -1,6 +1,6 @@
 {
   "name": "kevoree-chan-local",
-  "version": "5.0.2",
+  "version": "5.3.1",
   "main": "./lib/LocalChannel.js",
   "kevoree": {
     "package": "org.kevoree.library"
