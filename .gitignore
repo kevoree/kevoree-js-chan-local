@@ -32,3 +32,5 @@ node_modules
 
 # Kevoree JS
 kevlib.json
+
+browser/kevoree-chan-local*.js
