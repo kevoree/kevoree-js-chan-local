@@ -16,9 +16,18 @@ module.exports = function (grunt) {
       }
     },
 
+    kevoree: {
+      main: {
+        options: {
+          runtime: 'next'
+        }
+      }
+    },
+
     browserify: {
       browser: {
         options: {
+          external: ['kevoree-library'],
           alias: ['<%= pkg.main %>:<%= pkg.name %>']
         },
         src: [],
