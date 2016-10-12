@@ -1,6 +1,6 @@
 {
   "name": "kevoree-chan-local",
-  "version": "5.3.3-alpha.1",
+  "version": "5.3.3-alpha.2",
   "main": "./lib/LocalChannel.js",
   "kevoree": {
     "namespace": "kevoree"
@@ -13,12 +13,15 @@
     "kevoree-entities": "^9.0.0-alpha.0"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^3.5.1",
-    "grunt-contrib-uglify": "^0.8.0",
+    "grunt": "^1.0.1",
     "grunt-kevoree": "^5.9.0-alpha.2",
     "grunt-kevoree-genmodel": "^3.0.0",
-    "grunt-kevoree-registry": "^3.0.1"
+    "grunt-kevoree-registry": "^3.0.1",
+    "grunt-webpack": "^1.0.18",
+    "json-loader": "^0.5.4",
+    "load-grunt-tasks": "^3.5.2",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
   },
   "description": "Kevoree channel that only sends messages to components in the same node",
   "keywords": [

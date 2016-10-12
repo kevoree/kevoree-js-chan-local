@@ -1,4 +1,9 @@
+'use strict';
+
+var webpackConfig = require('./webpack.config');
+
 module.exports = function (grunt) {
+  require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
     // retrieve your project package.json
@@ -7,56 +12,36 @@ module.exports = function (grunt) {
     // creates kevlib.json which represents your project Kevoree model
     // by parsing your pkg.main entry point
     kevoree_genmodel: {
-      main: {}
-    },
-
-    kevoree_registry: {
       main: {
-        src: 'kevlib.json'
+        options: {
+          quiet: false,
+          verbose: true
+        }
       }
     },
 
     kevoree: {
       main: {
         options: {
-          runtime: 'next'
+          runtime: 'next',
+          browserDevMode: false
         }
       }
     },
 
-    browserify: {
-      browser: {
-        options: {
-          external: ['kevoree-library'],
-          alias: ['<%= pkg.main %>:<%= pkg.name %>']
-        },
-        src: [],
-        dest: 'browser/<%= pkg.name %>.js'
-      }
+    // publish your kevlib.json model to the Kevoree Registry
+    kevoree_registry: {
+      src: 'kevlib.json'
     },
 
-    uglify: {
-      options: {
-        mangle: {
-          except: ['_super']
-        }
-      },
-      browser: {
-        src: '<%= browserify.browser.dest %>',
-        dest: 'browser/<%= pkg.name %>.min.js'
-      }
+    webpack: {
+      main: webpackConfig
     }
   });
 
-  grunt.loadNpmTasks('grunt-kevoree');
-  grunt.loadNpmTasks('grunt-kevoree-genmodel');
-  grunt.loadNpmTasks('grunt-kevoree-registry');
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-
   grunt.registerTask('default', 'build');
   grunt.registerTask('build', ['kevoree_genmodel', 'browser']);
-  grunt.registerTask('publish', ['kevoree_registry']);
-  grunt.registerTask('kev', ['kevoree']);
-  grunt.registerTask('browser', ['browserify', 'uglify']);
+  grunt.registerTask('browser', 'webpack');
+  grunt.registerTask('kev', ['kevoree_genmodel', 'kevoree']);
+  grunt.registerTask('publish', ['kevoree_genmodel', 'kevoree_registry']);
 };

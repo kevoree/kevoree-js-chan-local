@@ -1,8 +1,8 @@
-add node0 : JavascriptNode
-add sync : WSGroup
-add node0.printer : ConsolePrinter
-add node0.ticker : Ticker
-add myChan : LocalChannel
+add node0 : JavascriptNode/LATEST/LATEST
+add sync : WSGroup/LATEST/LATEST
+add node0.printer : ConsolePrinter/LATEST/LATEST
+add node0.ticker : Ticker/LATEST/LATEST
+add myChan : LocalChannel/LATEST/LATEST
 
 attach node0 sync
 
